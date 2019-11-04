@@ -15,15 +15,16 @@ def solution():
 	ans = []
 	current_index = 0
 	def conversion(ins, ans, current_index):
+		print(ans)
 		n = len(ins)
 		if len(ans) == n:
 			result.append(ans)	
-			print(result)	
+			print('Result:', result)	
 		else:
 		
 			num = ins[current_index]
 			possible_char = list(number_letter_map[num])
-			
+			print(num, possible_char)	
 			for j in range(len(possible_char)):
 				ans.append(possible_char[j])
 				conversion(ins, ans, current_index+1)
