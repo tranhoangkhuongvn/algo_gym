@@ -18,6 +18,8 @@ class Solution:
             if expect_next_bytes > 0:
                 if bit0 and not bit1:
                     expect_next_bytes -= 1
+                else:
+                    break
 
             else:
                 if bit0 == 0:
@@ -45,19 +47,16 @@ class Solution:
         :type data: List[int]
         :rtype: bool
         """
-
         # Number of bytes in the current UTF-8 character
         n_bytes = 0
-
         # Mask to check if the most significant bit (8th bit from the left) is set or not
         mask1 = 1 << 7
-
         # Mask to check if the second most significant bit is set or not
         mask2 = 1 << 6
         for num in data:
-
             # Get the number of set most significant bits in the byte if
             # this is the starting byte of an UTF-8 character.
+            print(num)
             mask = 1 << 7
             if n_bytes == 0:
                 while mask & num:
@@ -81,8 +80,9 @@ class Solution:
                     return False
             n_bytes -= 1
             print(num, bin(num), n_bytes)
-        return n_bytes == 0     
+        return n_bytes == 0
 
 solution = Solution()
-arr = [32,196,147,225,184,165,246,149,170,129,204,153,243,188,141,147,0,217,149,234,176,176,243,178,133,144,213,181,193,187,238,137,134,218,155,33,231,134,162,243,184,144,131,71,201,131,244,133,189,140,242,178,128,156,207,154,230,165,181,240,181,134,180,227,129,199,172,226,158,164,214,183,224,137,141,20,194,188,232,177,151,242,157,180,153]
-solution.validUtf8(arr)
+#arr = [32,196,147,225,184,165,246,149,170,129,204,153,243,188,141,147,0,217,149,234,176,176,243,178,133,144,213,181,193,187,238,137,134,218,155,33,231,134,162,243,184,144,131,71,201,131,244,133,189,140,242,178,128,156,207,154,230,165,181,240,181,134,180,227,129,199,172,226,158,164,214,183,224,137,141,20,194,188,232,177,151,242,157,180,153]
+arr = [227, 129, 199, 172]
+solution.validUtf8_1(arr)
