@@ -16,9 +16,9 @@ def insert_node(root, x):
 		return create_node(x)
 	
 	if x > root.key:
-		insert_node(root.right, x)
+		root.right = insert_node(root.right, x)
 	elif x < root.key:
-		insert_node(root.left, x)
+		root.left = insert_node(root.left, x)
 	
 	return root
 
@@ -28,6 +28,14 @@ def create_tree(a, n):
 	for i in range(n):
 		root = insert_node(root, a[i])
 	return root
+
+
+def create_tree_with_root(root, a, n):
+	for i in range(n):
+		root = insert_node(root, a[i])
+	return root
+
+
 
 
 def search_node(root, x):
@@ -84,8 +92,10 @@ def traverse_tree(root):
 
 def tree_traversal(root):
 	if root != None:
+		print('root: ', root.key)
+		print('left:')
 		tree_traversal(root.left)
-		print(root.key, end=' ')
+		print('right:')
 		tree_traversal(root.right)
 
 
@@ -104,7 +114,9 @@ def delete_tree(root):
 	del root
 
 
-arr = [1,2,3,4,5,6,7,8,9,10]
-tree = create_tree(arr, 10)
-traverse_tree(tree)
-tree_traversal(tree)
+if __name__ == '__main__':
+	arr = [1,2,3,4,5,6,7,8,9,10]
+	root = create_node(5) 
+	tree = create_tree_with_root(root, arr, 10)
+	#traverse_tree(tree)
+	tree_traversal(tree)
